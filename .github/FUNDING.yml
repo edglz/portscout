@@ -1,2 +1,4 @@
 # Enables the "Sponsor" button on the repository.
+# Native Buy Me a Coffee key (username only).
+buy_me_a_coffee: edggdev
 custom: ["https://buymeacoffee.com/edggdev"]

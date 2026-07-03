@@ -80,6 +80,10 @@ streaming log, and results table.*
 <img src="docs/deps.gif" width="49%" alt="Dependency doctor" />
 <img src="docs/settings.gif" width="49%" alt="Settings screen" />
 
+**Selectable themes with live preview**
+
+![Theme switching](docs/themes.gif)
+
 </div>
 
 ## Requirements
