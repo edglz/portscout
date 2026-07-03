@@ -5,9 +5,10 @@ from __future__ import annotations
 from textual.app import ComposeResult
 from textual.containers import Vertical
 from textual.screen import ModalScreen
-from textual.widgets import Button, Input, Label, Static
+from textual.widgets import Button, Input, Label, Select, Static
 
 from ..domain.ports import AppConfig, DependencyStatus
+from .themes import PREDEFINED_THEMES, normalize_theme
 
 
 class DisclaimerScreen(ModalScreen[bool]):
@@ -65,6 +66,7 @@ class SettingsScreen(ModalScreen[AppConfig | None]):
         super().__init__()
         self._config = config
         self._location = config_location
+        self._original_theme = normalize_theme(config.theme)
 
     def compose(self) -> ComposeResult:
         with Vertical(id="dialog"):
@@ -78,12 +80,24 @@ class SettingsScreen(ModalScreen[AppConfig | None]):
             yield Input(value=self._config.output_dir, id="output_dir")
             yield Label("Timeout (seconds)")
             yield Input(value=str(self._config.timeout_seconds), id="timeout_seconds")
+            yield Label("Theme (previews live as you change it)")
+            yield Select(
+                [(label, key) for key, label in PREDEFINED_THEMES],
+                value=self._original_theme,
+                id="theme",
+                allow_blank=False,
+            )
             with Vertical(id="dialog-buttons"):
                 yield Button("Save", variant="success", id="save")
                 yield Button("Cancel", variant="default", id="cancel")
 
+    def on_select_changed(self, event: Select.Changed) -> None:
+        if event.select.id == "theme" and event.value is not Select.BLANK:
+            self.app.theme = normalize_theme(str(event.value))
+
     def on_button_pressed(self, event: Button.Pressed) -> None:
         if event.button.id != "save":
+            self.app.theme = self._original_theme  # revert the live preview
             self.dismiss(None)
             return
         try:
@@ -96,4 +110,7 @@ class SettingsScreen(ModalScreen[AppConfig | None]):
         )
         self._config.output_dir = self.query_one("#output_dir", Input).value.strip()
         self._config.timeout_seconds = max(1, timeout)
+        theme = self.query_one("#theme", Select).value
+        if theme is not Select.BLANK:
+            self._config.theme = normalize_theme(str(theme))
         self.dismiss(self._config)

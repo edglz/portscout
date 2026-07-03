@@ -11,6 +11,7 @@ notifications, and a clean [hexagonal architecture](#architecture) under the hoo
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/)
 [![Built with Textual](https://img.shields.io/badge/TUI-Textual-5e3ca5.svg)](https://textual.textualize.io/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support-FFDD00.svg?logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/edggdev)
 
 </div>
 
@@ -48,6 +49,8 @@ nmap, the filesystem, and the UI framework.
 - **Results table** — hosts, ports, states, and detected services at a glance.
 - **Configuration** — persisted to a TOML file; edit the nmap path, default profile,
   timeout, and output directory from within the app.
+- **Selectable themes** — a dozen predefined themes (Nord, Gruvbox, Dracula, Tokyo
+  Night, Catppuccin, Solarized, and more) that preview live and persist between runs.
 - **Dependency doctor** — checks that nmap and libpcap/npcap are present and guides
   installation when they are not.
 - **Clean hexagonal architecture** — the domain core has zero third-party imports and
@@ -214,6 +217,16 @@ a good place to start.
 
 If Portscout is useful to you, please consider starring the repository — it genuinely
 helps the project reach more people.
+
+## Support
+
+If Portscout saves you time, you can support its development:
+
+<a href="https://buymeacoffee.com/edggdev">
+  <img src="https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support-FFDD00.svg?logo=buymeacoffee&logoColor=black" alt="Buy Me A Coffee" />
+</a>
+
+Starring the repository also helps a lot.
 
 ## License
 

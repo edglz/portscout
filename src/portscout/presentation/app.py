@@ -33,6 +33,7 @@ from ..domain.value_objects import (
     get_profile,
 )
 from .screens import DependencyScreen, DisclaimerScreen, SettingsScreen
+from .themes import normalize_theme
 
 # nmap "--stats-every" emits lines like "SYN Stealth Scan Timing: About 42.10% done".
 _PERCENT_RE = re.compile(r"About\s+([\d.]+)%\s+done")
@@ -98,6 +99,7 @@ class PortscoutApp(App[None]):
         yield Footer()
 
     def on_mount(self) -> None:
+        self.theme = normalize_theme(self._config.theme)
         table = self.query_one("#table", DataTable)
         table.add_columns("Host", "Hostname", "Port", "Proto", "State", "Service")
         self.query_one("#progress", ProgressBar).display = False
@@ -309,6 +311,7 @@ class PortscoutApp(App[None]):
                 return
             self._config_service.save(config)
             self._config = config
+            self.theme = normalize_theme(config.theme)
             self.notify("Settings saved. Restart to apply nmap path changes.")
 
         self.push_screen(
