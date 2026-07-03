@@ -10,7 +10,6 @@ notifications, and a clean [hexagonal architecture](#architecture) under the hoo
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/)
 [![Built with Textual](https://img.shields.io/badge/TUI-Textual-5e3ca5.svg)](https://textual.textualize.io/)
-[![CI](https://github.com/edglz/portscout/actions/workflows/ci.yml/badge.svg)](https://github.com/edglz/portscout/actions/workflows/ci.yml)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 </div>
