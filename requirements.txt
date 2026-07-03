@@ -1,0 +1,3 @@
+# Runtime dependencies.
+# System dependencies (installed separately, see README): nmap, libpcap / npcap.
+textual>=0.60

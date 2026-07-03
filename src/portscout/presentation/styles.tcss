@@ -1,0 +1,91 @@
+/* Portscout TUI styling. */
+
+Screen {
+    layout: vertical;
+    background: $surface;
+}
+
+#body {
+    layout: horizontal;
+    height: 1fr;
+}
+
+#controls {
+    width: 42;
+    padding: 1 2;
+    background: $panel;
+    border-right: heavy $primary;
+}
+
+#controls Label {
+    margin-top: 1;
+    color: $text-muted;
+    text-style: bold;
+}
+
+#results {
+    width: 1fr;
+    layout: vertical;
+    padding: 0 1;
+}
+
+#command-preview {
+    height: auto;
+    color: $success;
+    background: $surface-darken-1;
+    padding: 0 1;
+    margin-bottom: 1;
+    border: round $success-darken-2;
+}
+
+#scan-button {
+    width: 100%;
+    margin-top: 2;
+}
+
+#log {
+    height: 1fr;
+    border: round $primary-darken-2;
+    background: $surface-darken-1;
+}
+
+DataTable {
+    height: 1fr;
+    margin-top: 1;
+}
+
+.status-ok { color: $success; }
+.status-bad { color: $error; }
+.status-warn { color: $warning; }
+
+/* --- Modal dialogs --- */
+
+DisclaimerScreen, SettingsScreen, DependencyScreen {
+    align: center middle;
+}
+
+#dialog {
+    width: 78;
+    max-width: 90%;
+    height: auto;
+    max-height: 90%;
+    padding: 1 2;
+    background: $panel;
+    border: thick $primary;
+}
+
+#dialog .title {
+    text-style: bold;
+    color: $warning;
+    margin-bottom: 1;
+}
+
+#dialog-buttons {
+    height: auto;
+    align: right middle;
+    margin-top: 1;
+}
+
+#dialog-buttons Button {
+    margin-left: 2;
+}
