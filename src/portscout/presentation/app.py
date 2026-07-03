@@ -21,6 +21,7 @@ from textual.widgets import (
     Static,
     Switch,
 )
+from textual.worker import Worker
 
 from ..application.services import ConfigService, DependencyService, ScanService
 from ..domain.entities import ScanRequest, ScanResult
@@ -65,7 +66,7 @@ class PortscoutApp(App[None]):
         self._deps = dependency_service
         self._config_service = config_service
         self._config = config_service.load()
-        self._scan_worker = None
+        self._scan_worker: Worker[None] | None = None
 
     # --- Layout ---------------------------------------------------------------
 
@@ -106,6 +107,7 @@ class PortscoutApp(App[None]):
             self._prompt_disclaimer()
         else:
             self._warn_missing_dependencies()
+            self.query_one("#target", Input).focus()
 
     # --- Disclaimer gate ------------------------------------------------------
 
@@ -117,6 +119,7 @@ class PortscoutApp(App[None]):
             self._config = self._config_service.accept_disclaimer()
             self.notify("Thanks — scan responsibly and only what you're authorized to.")
             self._warn_missing_dependencies()
+            self.query_one("#target", Input).focus()
 
         self.push_screen(DisclaimerScreen(), handle)
 
@@ -129,6 +132,11 @@ class PortscoutApp(App[None]):
 
     def on_input_changed(self, event: Input.Changed) -> None:
         self._refresh_preview()
+
+    def on_input_submitted(self, event: Input.Submitted) -> None:
+        # Pressing Enter in the target or ports field launches the scan. (The single-key
+        # `s` binding only fires when no text input has focus and would otherwise be typed.)
+        self.action_scan()
 
     def on_select_changed(self, event: Select.Changed) -> None:
         self._update_profile_description()

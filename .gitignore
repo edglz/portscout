@@ -24,3 +24,6 @@ htmlcov/
 # Portscout runtime output
 scans/
 *.xml
+
+# VHS recording scripts (GIFs are committed, the tapes are not)
+*.tape

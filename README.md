@@ -55,22 +55,29 @@ nmap, the filesystem, and the UI framework.
 
 ## Demo
 
-```
-+- Portscout ------------------------------------ a friendly nmap TUI - 12:34 -+
-| Target (IP, CIDR or hostname)   | $ nmap -T4 -sV -oX - 192.168.1.0/24        |
-| 192.168.1.0/24                  | scanning 62% - 0:00:14 remaining           |
-| Scan profile                    | [########################........]  62%    |
-| Standard (service versions) v   | Nmap scan report for 192.168.1.10          |
-| Custom ports (optional)         | Discovered open port 22/tcp                |
-| [ ] Elevated (sudo) scan        | Discovered open port 443/tcp               |
-| >  Start scan                   | +------------+----+------+---------------+ |
-|                                 | | 192.168.1.10 | 22 | open | ssh (OpenSSH) | |
-+---------------------------- s Scan  x Stop  c Settings  d Deps  q Quit ------+
-```
+<div align="center">
 
-> The sketch above is a placeholder. Recording a short GIF (for example with
-> [asciinema](https://asciinema.org/) or [vhs](https://github.com/charmbracelet/vhs))
-> and embedding it here noticeably improves how the project reads at a glance.
+![Portscout in action: accepting the disclaimer, entering a target, and watching a live scan](docs/demo.gif)
+
+*Accept the responsible-use disclaimer, type a target, and watch the live progress,
+streaming log, and results table.*
+
+</div>
+
+### More screens
+
+<div align="center">
+
+**Live input validation and command preview**
+
+![Live validation](docs/preview.gif)
+
+**Dependency doctor** &nbsp;·&nbsp; **Settings**
+
+<img src="docs/deps.gif" width="49%" alt="Dependency doctor" />
+<img src="docs/settings.gif" width="49%" alt="Settings screen" />
+
+</div>
 
 ## Requirements
 
@@ -113,7 +120,8 @@ python -m portscout
 
 | Key | Action |
 | --- | --- |
-| `s` | Start scan |
+| `Enter` | Start scan (while the target/ports field is focused) |
+| `s` | Start scan (when no text field is focused) |
 | `x` | Stop the running scan |
 | `c` | Open settings |
 | `d` | Show dependency status |
